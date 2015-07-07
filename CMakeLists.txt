@@ -17,4 +17,5 @@ add_library(plugin SHARED ${so_src} ${main_src})
 target_link_libraries(plugin dl crypto)
 
 add_executable(pluma "${project_root_dir}/src/main.cc" ${main_src})
+target_link_libraries(pluma dl crypto pthread)
 

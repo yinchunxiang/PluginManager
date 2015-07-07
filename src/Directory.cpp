@@ -1,4 +1,4 @@
-#include "directory.h"
+#include "Directory.h"
 #include <sys/types.h>
 #include <dirent.h>
 #include <queue>
@@ -14,6 +14,8 @@ void Directory::list_files(
         std::vector<std::string>& file_vec,
         const std::string& folder,
         const std::string& extension) {
+
+    fprintf(stdout, "start to list files ...\n");
     DIR* dir = opendir(folder.c_str());
     if (NULL == dir) {
         fprintf(stderr, "Could not open %s directory\n", folder.c_str());

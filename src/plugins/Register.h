@@ -7,7 +7,7 @@
 #include "../PluginManager.h"
 
 typedef std::unordered_map<string, Plugin*> PluginMap;
-extern PluginMap* global_plugin_map;
+//extern PluginMap* global_plugin_map;
 /*
 #ifdef _cplusplus 
 extern "C" {
@@ -23,9 +23,9 @@ const PluginMap& get_global_plugin_map();
 #define register_plugin(clazz)\
     __attribute__((constructor)) void register_##clazz() {\
         PluginManager::get_instance()->add_plugin(#clazz, new clazz());\
-        fprintf(stdout, "constructor ==> plugin:%s \n", #clazz);\
+        fprintf(stdout, "[%s]constructor ==> plugin:%s \n", __FILE__, #clazz);\
         (*g_global_plugin_map)[#clazz] = new clazz();\
-        fprintf(stdout, "CONSTRUCTOR ==> g_size:%u \n", (*g_global_plugin_map).size());\
+        fprintf(stdout, "[%s]CONSTRUCTOR ==> g_size:%u \n", __FILE__, (*g_global_plugin_map).size());\
     }
 
         //(*global_plugin_map)[#clazz] = new clazz();\

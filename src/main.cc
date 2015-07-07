@@ -7,7 +7,10 @@ typedef const PluginMap* (*fn)();
 
 int main(int argc, const char *argv[])
 {
+
+    fprintf(stdout, "main start ...\n");
     PluginManager* pm = PluginManager::get_instance();
+    fprintf(stdout, "main get instance ...\n");
     pm->LoadFromFolder(".");
     /*
     PluginMap::const_iterator it = plugin_map.begin();
@@ -21,6 +24,7 @@ int main(int argc, const char *argv[])
     
     for (auto& pair : lm) {
         fprintf(stdout, "so name: %s\n", pair.first.c_str());
+        /*
         fn f = (fn)pair.second->get_symbol("get_global_plugin_map");
         if (NULL == f) {
             fprintf(stdout, "pm is null");
@@ -29,6 +33,7 @@ int main(int argc, const char *argv[])
             const PluginMap* ppm = f();
             fprintf(stdout, "plugin number => %lu\n", ppm->size());
         } 
+        */
         hello_t hello = (hello_t)pair.second->get_symbol("hello");
         if (NULL == hello) {
             fprintf(stdout, "hello is null");
@@ -38,9 +43,9 @@ int main(int argc, const char *argv[])
         }
     }
     pm = PluginManager::get_instance();
-    fprintf(stdout, "plugin_map size %lu\n", pm->plugin_map().size());
+    fprintf(stdout, "[%s]plugin_map size %lu\n", __FILE__, pm->plugin_map().size());
 
-    fprintf(stdout, "g_size %lu\n", g_global_plugin_map->size());
+    fprintf(stdout, "[%s]g_size %lu\n", __FILE__, g_global_plugin_map->size());
 
     
     return 0;

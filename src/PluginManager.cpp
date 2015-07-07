@@ -18,13 +18,27 @@ void PluginManager::add_plugin(const char* plugin_name, Plugin* plugin) {
 
 
 PluginManager* PluginManager::get_instance() {
-    std::call_once(_once_flag, [] { _instance = new PluginManager();});
+    /*
+    fprintf(stdout, "get_instance start ...\n");
+    try {
+        std::call_once(_once_flag, []{ _instance = new PluginManager();});
+    }
+    catch (exception& e) {
+        fprintf(stdout, "%s\n", e.what());
+    }
+    fprintf(stdout, "get_instance end ...\n");
+    */
+    fprintf(stdout, "get_instance start ...\n");
+    if (NULL == _instance) {
+        _instance = new PluginManager();
+    }
+    fprintf(stdout, "get_instance end ...\n");
     return _instance;
 }
 
 int PluginManager::LoadFromFolder(const std::string& folder) {
     std::vector<std::string> files;
-    Directory::list_files(files, folder, "dylib");
+    Directory::list_files(files, folder, "so");
     for (auto& file : files) {
         fprintf(stdout, "find file => %s\n", file.c_str());
     }

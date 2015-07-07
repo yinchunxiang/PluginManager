@@ -13,13 +13,17 @@ using namespace std;
 
     typedef unordered_map<string, Plugin*> PluginMap;
     typedef unordered_map<string, DynamicLibrary*> LibMap;
+/*
 #ifdef _cplusplus
     extern "C" {
 #endif
+*/
         extern PluginMap* g_global_plugin_map;
+/*
 #ifdef _cplusplus
     }
 #endif
+*/
 
 class PluginManager {
 public:
@@ -37,13 +41,13 @@ public:
 private:
     PluginManager();
     PluginManager(const PluginManager& pm) = delete;
-    static PluginManager* _instance;
     std::string ResolvePathExtension(const std::string& path);
     std::string GetDynamicLibraryName(const std::string& path);
     bool load(const std::string& path);
     
     LibMap _libraries;
     PluginMap _plugin_map;
+    static PluginManager* _instance;
     static std::once_flag _once_flag;
 
 };
