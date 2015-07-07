@@ -8,6 +8,7 @@ typedef const PluginMap* (*fn)();
 int main(int argc, const char *argv[])
 {
 
+    fprintf(stdout, "g_global_plugin_map:%p", g_global_plugin_map);
     fprintf(stdout, "main start ...\n");
     PluginManager* pm = PluginManager::get_instance();
     fprintf(stdout, "main get instance ...\n");
