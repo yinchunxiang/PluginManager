@@ -1,6 +1,16 @@
 #include "PluginManager.h"
 #include "Directory.h"
 
+#if defined(linux) || defined(__linux)
+    // Linux
+    #define PLUMA_SO_EXT "so"
+
+#elif defined(__APPLE__) || defined(MACOSX) || defined(macintosh) || defined(Macintosh)
+    // MacOS
+    #define PLUMA_SO_EXT "dylib"
+#endif
+
+
 PluginMap* g_global_plugin_map = new PluginMap();
 
 PluginManager* PluginManager::_instance = NULL;
@@ -38,7 +48,7 @@ PluginManager* PluginManager::get_instance() {
 
 int PluginManager::LoadFromFolder(const std::string& folder) {
     std::vector<std::string> files;
-    Directory::list_files(files, folder, "so");
+    Directory::list_files(files, folder, PLUMA_SO_EXT);
     for (auto& file : files) {
         fprintf(stdout, "find file => %s\n", file.c_str());
     }
@@ -72,7 +82,7 @@ std::string PluginManager::ResolvePathExtension(const std::string& path) {
     else ++lastDash;
     if (lastDot < lastDash || lastDot == std::string::npos){
         // path without extension, add it
-        return path + "." + "dylib";
+        return path + "." + PLUMA_SO_EXT;
     }
     return path;
 }
