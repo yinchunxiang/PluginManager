@@ -40,7 +40,7 @@ int main(int argc, const char *argv[])
     pm = PluginManager::get_instance();
     fprintf(stdout, "plugin_map size %lu\n", pm->plugin_map().size());
 
-    fprintf(stdout, "g_size %lu\n", g_global_plugin_map.size());
+    fprintf(stdout, "g_size %lu\n", g_global_plugin_map->size());
 
     
     return 0;

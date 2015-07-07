@@ -1,7 +1,7 @@
 #include "PluginManager.h"
 #include "Directory.h"
 
-PluginMap g_global_plugin_map = PluginMap();
+PluginMap* g_global_plugin_map = new PluginMap();
 
 PluginManager* PluginManager::_instance = NULL;
 std::once_flag PluginManager::_once_flag;

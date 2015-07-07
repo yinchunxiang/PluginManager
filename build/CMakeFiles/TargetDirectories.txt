@@ -1,0 +1,2 @@
+/Users/apple/GitHub/PluginManager/build/CMakeFiles/pluma.dir
+/Users/apple/GitHub/PluginManager/build/CMakeFiles/plugin.dir

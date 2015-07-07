@@ -24,8 +24,8 @@ const PluginMap& get_global_plugin_map();
     __attribute__((constructor)) void register_##clazz() {\
         PluginManager::get_instance()->add_plugin(#clazz, new clazz());\
         fprintf(stdout, "constructor ==> plugin:%s \n", #clazz);\
-        g_global_plugin_map[#clazz] = new clazz();\
-        fprintf(stdout, "constructor ==> g_size:%u \n", g_global_plugin_map.size());\
+        (*g_global_plugin_map)[#clazz] = new clazz();\
+        fprintf(stdout, "CONSTRUCTOR ==> g_size:%u \n", (*g_global_plugin_map).size());\
     }
 
         //(*global_plugin_map)[#clazz] = new clazz();\
