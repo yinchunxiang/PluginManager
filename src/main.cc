@@ -8,7 +8,7 @@ typedef const PluginMap* (*fn)();
 int main(int argc, const char *argv[])
 {
 
-    fprintf(stdout, "g_global_plugin_map:%p", g_global_plugin_map);
+    fprintf(stdout, "g_global_plugin_map:%p\n", g_global_plugin_map);
     fprintf(stdout, "main start ...\n");
     PluginManager* pm = PluginManager::get_instance();
     fprintf(stdout, "main get instance ...\n");
@@ -46,6 +46,8 @@ int main(int argc, const char *argv[])
     pm = PluginManager::get_instance();
     fprintf(stdout, "[%s]plugin_map size %lu\n", __FILE__, pm->plugin_map().size());
 
+    fprintf(stdout, "[%s]g_size %lu\n", __FILE__, g_global_plugin_map->size());
+    (*g_global_plugin_map)["EmptyPlugin"] = NULL;
     fprintf(stdout, "[%s]g_size %lu\n", __FILE__, g_global_plugin_map->size());
 
     

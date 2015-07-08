@@ -18,7 +18,7 @@ using namespace std;
     extern "C" {
 #endif
 */
-        extern PluginMap* g_global_plugin_map;
+      extern PluginMap* g_global_plugin_map;
 /*
 #ifdef _cplusplus
     }

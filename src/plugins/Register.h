@@ -18,6 +18,8 @@ const PluginMap& get_global_plugin_map();
 #endif
 */
 
+void global_add_plugin(const char* plugin_name, Plugin* plugin);
+
 #define TOSTRING(X) #X
 
 #define register_plugin(clazz)\
@@ -25,8 +27,9 @@ const PluginMap& get_global_plugin_map();
         PluginManager::get_instance()->add_plugin(#clazz, new clazz());\
         fprintf(stdout, "[%s]constructor ==> plugin:%s \n", __FILE__, #clazz);\
         fprintf(stdout, "[%s]g_global_plugin_map:%p\n", __FILE__, g_global_plugin_map);\
-        (*g_global_plugin_map)[#clazz] = new clazz();\
-        fprintf(stdout, "[%s]CONSTRUCTOR ==> g_size:%u \n", __FILE__, (*g_global_plugin_map).size());\
+        Plugin* plugin = new clazz();\
+        global_add_plugin(#clazz, plugin);\
+        fprintf(stdout, "[%s]CONSTRUCTOR ==> g_size:%lu \n", __FILE__, g_global_plugin_map->size());\
     }
 
         //(*global_plugin_map)[#clazz] = new clazz();\
